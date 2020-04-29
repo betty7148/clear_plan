@@ -11,7 +11,13 @@ import { Row } from 'ant-design-vue';
 import { Layout } from 'ant-design-vue';
 import { Timeline } from 'ant-design-vue';
 import { Result } from 'ant-design-vue';
+import { Calendar } from 'ant-design-vue';
 // import "ant-design-vue/dist/antd.css";
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios);
+
 
 Vue.component(Button.name,Button);
 Vue.component(Layout.name,Layout);
@@ -30,6 +36,7 @@ Vue.component(List.Item.name,List.Item);
 Vue.component(Col.name,Col);
 Vue.component(Row.name,Row);
 Vue.component(Card.name,Card);
+Vue.component(Calendar.name,Calendar);
  
 Vue.config.productionTip = false;
 
