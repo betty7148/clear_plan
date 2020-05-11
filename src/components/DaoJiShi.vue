@@ -34,14 +34,27 @@ export default {
     created(){
         this.computJuLiTime();
         setInterval(this.computJuLiTime,1000);
-        this.$http.get('http://127.0.0.1:7001/getMostImportant').then((res)=>{
+        // let token = window.localStorage.getItem('auth');
+        // Vue.http.headers.common['token'] = window.localStorage.getItem('auth');
+ 
+        this.$http.get('http://127.0.0.1:7001/getMostImportant',{
+          // headers:{
+          //   token:window.localStorage.getItem('auth'),
+          //   user:window.localStorage.getItem('user')
+          // }
+        }).then((res)=>{
           const { data , status } = res;
           if(status == 200){
-            const { content , status } = data;
+            const { content , code } = data;
             console.log(data);
-            if(status == 200){
+            if(code == 200){
               this.thing =  '距离' + content + '还剩';
               console.log(this.thing);
+            }else if(code == 1001 ){
+               this.$message.error('身份认证过期');
+              //  this.$router.push({path:'/login'})
+            }else if(code == 1002 ){
+               this.$message.error('身份信息不正确，请重新登陆！');
             }
           }
           
